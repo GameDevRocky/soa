@@ -1,2 +1,4 @@
 .vscode
 /src
+/build/obj
+/build/bin
