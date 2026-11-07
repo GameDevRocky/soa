@@ -80,7 +80,7 @@ namespace DOD
      * @tparam T
      */
     template<typename T>
-    struct TypedStorageColumn
+    struct TypedStorageColumn : public StorageColumn
     {
         std::vector<T> values;
     };
