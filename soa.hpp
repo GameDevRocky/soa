@@ -37,36 +37,24 @@ struct Tag{
     }
 };
 
-template<typename T, size_t capacity = default_capacity>
+template<typename cls, size_t capacity = default_capacity>
 class Registry{
-    static inline size_t active_count = 0; 
-    std::unordered_map<Tag, Block> data;
 
+    public:
     static Registry& Get(){
         static Registry registry;
         return registry;
     };
     
-    template<typename T, size_t capacity = default_capacity>
-    void CreateBlock(){
-        Block* block = new Block<T, capacity>();
-
-    };
-
-    void RemoveObject(const std::size_t& index){
-        for (const auto& [tag, block] : data){
-            block.Remove(index);
-        }
-    }
-
+    private:
+    
+    static size_t active_count = 0; 
 };
 
 
 class Handle{
     std::size_t slot;
     std::size_t generation;
-
-    Handle() = default;
     Handle(std::size_t s, std::size_t g) : slot(s), generation(g){
 
     } 
@@ -74,12 +62,15 @@ class Handle{
 
 
 
-template<std::size_t capacity = default_capacity>
+template<typename cls, std::size_t capacity = default_capacity>
 class Object{
-    
 
     protected:
-        const Handle handle;
+        static Registry<cls, capacity>& GetRegistry(){
+            return Registry<cls, capacity>::Get();
+        }
+
+        Handle handle;
 
 
 }
