@@ -29,16 +29,6 @@ namespace dod {
 
 // Custom excpetion classes
 
-/**
- *
- * Tracker: Represents the location of the
- * object inside its type registry
- */
-struct Handle {
-  unsigned int slot;
-  unsigned int generation;
-};
-
 /*
  * Top level class that all DOD classes
  * will inherit from, owns the life cycle
