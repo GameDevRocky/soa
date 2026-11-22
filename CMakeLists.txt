@@ -28,8 +28,12 @@ cmake_minimum_required(VERSION 4.0)
 project(DODProject)
 
 # fetch all unittest source files
-file(GLOB_RECURSE UNITEST_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+file(GLOB_RECURSE UNITEST_SRC CONFIGURE_DEPENDS
      "${CMAKE_CURRENT_SOURCE_DIR}/unittests/*.cpp")
+
+if(NOT UNITEST_SRC)
+  return()
+endif()
 
 add_executable(UnitTests ${UNITEST_SRC})
 
